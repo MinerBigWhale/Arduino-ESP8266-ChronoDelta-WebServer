@@ -1,0 +1,72 @@
+<!DOCTYPE HTML><html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body { font-family: Arial; display: inline-block; margin: 0 auto; text-align: center; width: 100vw; height: 100vh; font-size: 1rem;}
+		
+    h2 { margin: 0 ; font-size: 4vw; color: #fff; background-color: #4486d0; padding: 1vh;}
+		.parameters { margin: 1vh auto;}
+		
+		table  { width: 90vw; margin: 0 auto; }
+		th { font-weight: bold; color: #fff; background-color: #444; }
+		tr:nth-child(odd)>td {background: #eee;}
+		tr:nth-child(even)>td {background: #fff;}
+		
+		.green { color : #2c9c26; }
+		.red { color : #ba2e2e; }
+  </style>
+</head>
+<body>
+  <h2>Arduino ESP8266 - ChronoDelta WebServer</h2>
+  <div class="parameters">
+    <label for="goal">Goal (in sec):</label>
+    <input type="text" name="goal" id="goal" value="12">
+		
+    <input type="submit" onclick="loadData()" value="Update">
+  </div>
+  <div class="results">
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>T1</th>
+				<th>T2</th>
+				<th>Delta</th>
+				<th>Passed</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>1468587</td>
+				<td>1468587</td>
+				<td>08.155</td>
+				<td><span class="red">Nope</span></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>1468587</td>
+				<td>1468587</td>
+				<td>10.218</td>
+				<td><span class="red">Nope</span></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>1468587</td>
+				<td>1468587</td>
+				<td>13.594</td>
+				<td><span class="green">YES !</span></td>
+			</tr>
+		</table>
+  </div>
+</body>
+<script>
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      //TODO: append to the table
+    }
+  };
+  xhttp.open("GET", "/result", true);
+  xhttp.send();
+}, 10000 ) ;
+</script>
+</html>
